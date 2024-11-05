@@ -24,7 +24,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/todoop-frontend:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/todoop-frontend:${{ github.sha.substring(0, 7) }}
 
       - name: Push with latest tag
         uses: docker/build-push-action@v4
