@@ -19,12 +19,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push the Docker image
-        uses: docker/build-push-action@v4 # You can use v4 or later
+        uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile   # Use Dockerfile instead of docker-compose.yaml
+          file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/todoop-backend:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/todoop-frontend:${{ github.sha }}
 
       - name: Push with latest tag
         uses: docker/build-push-action@v4
@@ -32,4 +32,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/todoop-backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/todoop-frontend:latest
