@@ -11,6 +11,7 @@
 
 Note:
 - open app in browser@ http://0.0.0.0:5173
+- GH-Actions job to update image in Docker Registry on every push
 
 
 # React + TypeScript + Vite
