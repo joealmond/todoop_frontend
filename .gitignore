@@ -1,0 +1,5 @@
+node_modules
+public
+.github
+.env
+.DS_Store
