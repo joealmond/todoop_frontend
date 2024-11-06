@@ -4,17 +4,17 @@ import './App.css'
 
 interface ApiResponse {
   title: string;
-  description: string;
+  completed: boolean;
 };
 
 function App() {
-  const [data, setData] = useState<ApiResponse | null>(null);
+  const [data, setData] = useState<ApiResponse[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(API_URL);
-        const result = await response.json();
+        const result:ApiResponse[] = await response.json();
         setData(result);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -26,14 +26,18 @@ function App() {
 
   return (
     <>
-        {data 
-        ? 
-        <div>
-          <h4>{data.title}</h4>
-          <p>{data.description}</p> 
-        </div>
-        : 
-        <p>Loading data...</p>}
+      {data.length > 0 ? (
+        <ul>
+          {data.map((item) => (
+            <li key={item.title}> 
+              <span>{item.title}</span>
+              <span> - Completed:{item.completed.toString()}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading data...</p>
+      )}
     </>
   )
 }
